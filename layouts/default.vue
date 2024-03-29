@@ -1,26 +1,19 @@
 <template>
   <div class="defaultLayout">
-    <div class="top">
-      <p>default 布局公共头部</p>
-      <div class="tabs">
-        <my-tab></my-tab>
+   
+      <div class="top">
+        <p>default 布局公共头部</p>
+        <div class="tabs">
+          <my-tab></my-tab>
+        </div>
       </div>
-    </div>
-    <div class="content">
-      <slot></slot>
-    </div>
+      <div class="content">
+        <slot></slot>
+      </div>
   </div>
 </template>
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 <style lang="scss" scoped>
- .tabs {
-      width: 50vw;
-      min-width: 600px;
-      height: 50px;
-      margin: 0 auto;
-    }
 .defaultLayout {
   // height: 100vh;
   .top {
@@ -36,7 +29,12 @@
       align-items: center;
       justify-content: center;
     }
-   
+    .tabs {
+      width: 50vw;
+      min-width: 600px;
+      height: 50px;
+      margin: 0 auto;
+    }
   }
 }
 </style>
