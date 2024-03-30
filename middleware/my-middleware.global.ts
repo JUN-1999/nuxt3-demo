@@ -1,9 +1,9 @@
-// 中间件
+// 中间件 路由拦截
 export default defineNuxtRouteMiddleware((to, from) => {
     const store = useNuxtStore(); // 需要放到函数内部
-    console.log(store.layout_name);
-    console.log('to', to);
-    console.log('from', from);
+    // console.log(store.layout_name);
+    // console.log('to', to);
+    // console.log('from', from);
 
     setPageLayout(store.layout_name);
     // if (to.params.id === '1') {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>全屏展示信息</div>
-    <div @click="back">返回</div>
+    <el-button @click="back">返回</el-button>
     <slot></slot>
   </div>
 </template>

@@ -8,11 +8,21 @@
         </div>
       </div>
       <div class="content">
+        <el-button @click="enableCustomLayout">更改布局</el-button>
         <slot></slot>
       </div>
   </div>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+// default  custom
+const store = useNuxtStore();
+const enableCustomLayout = () => {
+  let new_layout: MaybeRef =
+    store.layout_name == "default" ? "custom" : "default";
+  store.setLayoutName(new_layout);
+  setPageLayout(new_layout);
+};
+</script>
 <style lang="scss" scoped>
 .defaultLayout {
   // height: 100vh;
