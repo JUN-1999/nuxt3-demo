@@ -26,7 +26,8 @@ export async function request({ url, opts = {}, method = 'get' }: Params): Promi
     const query: QueryItem = route.query;
 
     const config = useRuntimeConfig();
-    debugger
+    console.log(config);
+    
     const { data } = await useFetch(url, {
         // method此处仅仅只处理了get与post请求
         method,
