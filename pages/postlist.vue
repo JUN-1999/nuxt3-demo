@@ -33,7 +33,7 @@ const toPosts = (id) => {
   .pages {
     padding: 20px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, 1fr);
     gap: 20px;
 
     .page {

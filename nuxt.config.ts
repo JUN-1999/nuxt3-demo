@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     '@element-plus/nuxt',
     '@pinia/nuxt'
   ],
+  // 配置需要用到的参数
   runtimeConfig: {
     // apiSecret 只能在服务器端上访问
     apiSecret: '123',
@@ -12,6 +13,9 @@ export default defineNuxtConfig({
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE as string
     }
-  }
+  },
+  css: [
+    'cesium/Build/Cesium/Widgets/widgets.css',
+  ]
 
 })

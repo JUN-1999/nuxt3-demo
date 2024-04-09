@@ -1,7 +1,7 @@
 <template>
   <div class="mytabs">
     <NuxtLink to="/">首页</NuxtLink>
-    <NuxtLink to="/about">about页面</NuxtLink>
+    <NuxtLink to="/three">three页面</NuxtLink>
     <NuxtLink to="/el">el页面</NuxtLink>
     <NuxtLink to="/postlist">postlist</NuxtLink>
   </div>
