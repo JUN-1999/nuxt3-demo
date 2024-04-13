@@ -14,11 +14,13 @@
     "cesium": "^1.116.0",
     "nuxt": "^3.11.1",
     "pinia": "^2.1.7",
+    "three": "^0.163.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
     "@element-plus/nuxt": "^1.0.8",
+    "@types/three": "^0.163.0",
     "sass": "^1.72.0"
   }
 }

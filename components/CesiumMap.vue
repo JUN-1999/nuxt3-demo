@@ -3,14 +3,12 @@
 </template>
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-// import {
-//   Viewer,
-//   TileMapServiceImageryProvider,
-//   buildModuleUrl,
-//   Ion,
-// } from "cesium";
-
-import { Viewer, Ion } from "cesium";
+import {
+  Viewer,
+  Ion,
+  TileMapServiceImageryProvider,
+  buildModuleUrl,
+} from "cesium";
 
 const cesiumContainer = ref<HTMLDivElement>();
 
@@ -25,7 +23,7 @@ function initCesium() {
     // 初始化 Cesium 地图
     const viewer = new Viewer(cesiumContainer.value as HTMLElement, {
       geocoder: false, //右上角 搜索
-      homeButton: false, //右上角 Home
+      // homeButton: true, //右上角 Home
       sceneModePicker: false, //右上角 2D/3D切换
       baseLayerPicker: false, //右上角 地形
       navigationHelpButton: false, //右上角 Help
@@ -48,12 +46,13 @@ function initCesium() {
 
       //   imageryProvider: new Cesium.IonImageryProvider({ assetId: 2 }), // 使用 Cesium 提供的默认卫星图像
       // baseLayerPicker: false, // 不显示图层选择器
-      // Ion: {
-      //   defaultAccessToken:
-      //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1M2VlYzEwZS0xY2I4LTQ5NzgtYTRhYi1iNjBjNzZhNGJjYzkiLCJpZCI6MjA3MjUxLCJpYXQiOjE3MTI1NTUwNTZ9.DmHnTcII-oAk_sOx22W6Gr60HEfbLSFH7Xx23eS-z7E",
-      // },
-      // ...其他 Cesium 配置项
+
+      // // ...其他 Cesium 配置项
     });
+
+    // 去除logo
+
+    viewer.cesiumWidget.creditContainer.style.display = "none";
 
     // 设置密钥
     Ion.defaultAccessToken =
