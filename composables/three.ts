@@ -2,8 +2,9 @@ import * as THREE from "three";
 import {
     OrbitControls
 } from "three/examples/jsm/controls/OrbitControls";
+import { nextTick } from 'vue';
 
-export class Three {
+export class MyThree {
     scene!: THREE.Scene;
     camera!: THREE.PerspectiveCamera;
     renderer!: THREE.WebGLRenderer;
@@ -12,6 +13,7 @@ export class Three {
     threeContainer: HTMLElement; // threeDOM对象
     AnimatorsGroup: Array<Function> = []; // 动画的事件
     public controls!: OrbitControls;// 镜头控制器
+    animationFrameId: number = 0;// 动画帧
     constructor(dom: HTMLElement) {
         this.threeContainer = dom;
         this.initScenes();
@@ -35,10 +37,9 @@ export class Three {
         // 监听场景改变
         window.addEventListener('resize', this.onWindowResize, false);
     }
-
     // 渲染场景
     private animate = () => {
-        requestAnimationFrame(this.animate);
+        this.animationFrameId = requestAnimationFrame(this.animate);
 
         this.AnimatorsGroup.length > 0 && this.AnimatorsGroup.forEach(Animators => {
             Animators();
@@ -47,7 +48,6 @@ export class Three {
         this.renderer.render(this.scene, this.camera);
         // 更新控制器
         this.controls && this.controls.update();
-
     }
     // 获得three盒子的宽高
     private getThreeBoxInfo = () => {
@@ -65,9 +65,9 @@ export class Three {
         this.renderer.setSize(this.threebox_width, this.threebox_height);
     };
     // 不需要监听
-    public removeResizeListener() {
-        window.removeEventListener('resize', this.onWindowResize, false);
-    }
+    // public removeResizeListener() {
+    //     window.removeEventListener('resize', this.onWindowResize, false);
+    // }
     // 添加控制器
     private createControls = () => {
         // 鼠标控制      相机，渲染dom
@@ -80,6 +80,26 @@ export class Three {
         this.controls.enableZoom = true;
         // 是否开启右键拖拽
         this.controls.enablePan = true;
+    }
+    // 销毁three中的元素
+    public destroyThree() {
+        if (this.animationFrameId) {
+            cancelAnimationFrame(this.animationFrameId);
+            this.animationFrameId = 0;
+        }
+
+        let sceneChildren: any[] = [];
+        this.scene.traverse && this.scene.traverse(child => {
+            // 这里资源需要在异步清理
+            sceneChildren.push(child)
+        })
+        sceneChildren.forEach(item => {
+            this.scene.remove(item);
+        })
+        sceneChildren=[]
+
+        this.renderer.dispose();
+        window.removeEventListener('resize', this.onWindowResize, false);
     }
 }
 

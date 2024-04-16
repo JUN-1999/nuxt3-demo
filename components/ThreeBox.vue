@@ -3,17 +3,20 @@
 </template>
 <script setup lang="ts">
 import * as THREE from "three";
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted, onBeforeUnmount, ref } from "vue";
 
 let three: any = null;
 
 onMounted(() => {
-  three = new Three(document.querySelector("#threeContainer") as HTMLElement);
+  console.log("onMounted-three");
+  three = new MyThree(document.querySelector("#threeContainer") as HTMLElement);
   addBox();
 });
 
-onUnmounted(() => {
-  three && three.removeResizeListener ();
+onBeforeUnmount(() => {
+  // three && three.removeResizeListener ();
+  three && three.destroyThree();
+  three = null;
 });
 
 const addBox = () => {

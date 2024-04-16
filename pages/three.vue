@@ -4,7 +4,7 @@
   >
     <div style="width: 50vw; height: 70vh">
       <client-only>
-        <CesiumMap></CesiumMap>
+        <!-- <CesiumMap></CesiumMap> -->
       </client-only>
     </div>
     <div style="width: 50vw; height: 70vh">
