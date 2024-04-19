@@ -2,19 +2,31 @@ import * as THREE from "three";
 import {
     OrbitControls
 } from "three/examples/jsm/controls/OrbitControls";
-import { nextTick } from 'vue';
+// 导入模型加载器
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+
 
 export class MyThree {
+    static instance: any;
     scene!: THREE.Scene;
     camera!: THREE.PerspectiveCamera;
     renderer!: THREE.WebGLRenderer;
     threebox_width: number = 0;
     threebox_height: number = 0;
-    threeContainer: HTMLElement; // threeDOM对象
+    threeContainer: HTMLElement | null = null; // threeDOM对象
     AnimatorsGroup: Array<Function> = []; // 动画的事件
     public controls!: OrbitControls;// 镜头控制器
     animationFrameId: number = 0;// 动画帧
+
+    textureLoader = new THREE.TextureLoader();//纹理加载
+    gltfLoader = new GLTFLoader();// gltf模型加载
     constructor(dom: HTMLElement) {
+        // 实现单例模式
+        if (MyThree.instance) {
+            return MyThree.instance;
+        }
+        MyThree.instance = this;
+
         this.threeContainer = dom;
         this.initScenes();
         this.createControls();
@@ -26,8 +38,16 @@ export class MyThree {
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(75, this.threebox_width / this.threebox_height, 1, 1000);
         this.camera.position.z = 5;
+        this.camera.position.x = 5;
+        this.camera.position.y = 5;
         this.camera.lookAt(this.scene.position);
-        this.renderer = new THREE.WebGLRenderer();
+        this.renderer = new THREE.WebGLRenderer({
+            // antialias: true,  // 开启抗锯齿
+            // logarithmicDepthBuffer: true  // 设置深度缓冲区
+        });
+        this.renderer.shadowMap.enabled = true;
+        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
         this.renderer.setSize(this.threebox_width, this.threebox_height);
         // 将渲染器添加到dom中
         this.threeContainer && this.threeContainer.appendChild(this.renderer.domElement);
@@ -96,9 +116,10 @@ export class MyThree {
         sceneChildren.forEach(item => {
             this.scene.remove(item);
         })
-        sceneChildren=[]
+        sceneChildren = []
 
         this.renderer.dispose();
+        MyThree.instance = null;
         window.removeEventListener('resize', this.onWindowResize, false);
     }
 }

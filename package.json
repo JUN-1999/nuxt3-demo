@@ -11,10 +11,8 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
-    "cesium": "^1.116.0",
     "nuxt": "^3.11.1",
     "pinia": "^2.1.7",
-    "three": "^0.163.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
