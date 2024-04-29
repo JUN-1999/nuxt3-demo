@@ -1,9 +1,9 @@
 <template>
   <div class="mytabs">
-    <NuxtLink to="/">首页</NuxtLink>
-    <NuxtLink to="/three">three页面</NuxtLink>
-    <NuxtLink to="/el">el页面</NuxtLink>
-    <NuxtLink to="/postlist">postlist</NuxtLink>
+    <NuxtLink to="/"><el-button type="text">首页</el-button></NuxtLink>
+    <NuxtLink to="/three"><el-button type="text">three页面</el-button></NuxtLink>
+    <NuxtLink to="/el"><el-button type="text">el页面</el-button></NuxtLink>
+    <NuxtLink to="/postlist"><el-button type="text">postlist</el-button></NuxtLink>
   </div>
 </template>
 <script setup lang="ts"></script>
