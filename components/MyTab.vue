@@ -1,9 +1,10 @@
 <template>
   <div class="mytabs">
-    <NuxtLink to="/"><el-button type="text">首页</el-button></NuxtLink>
-    <NuxtLink to="/three"><el-button type="text">three页面</el-button></NuxtLink>
-    <NuxtLink to="/el"><el-button type="text">el页面</el-button></NuxtLink>
-    <NuxtLink to="/postlist"><el-button type="text">postlist</el-button></NuxtLink>
+    <NuxtLink to="/"><el-button link>首页</el-button></NuxtLink>
+    <NuxtLink to="/media"><el-button link>media页面</el-button></NuxtLink>
+    <NuxtLink to="/el"><el-button link>el页面</el-button></NuxtLink>
+    <NuxtLink to="/quill"><el-button link>quill页面</el-button></NuxtLink>
+    <NuxtLink to="/postlist"><el-button link>postlist</el-button></NuxtLink>
   </div>
 </template>
 <script setup lang="ts"></script>

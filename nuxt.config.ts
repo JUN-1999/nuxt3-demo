@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@element-plus/nuxt',
-    '@pinia/nuxt'
+    '@pinia/nuxt',
   ],
   // 配置需要用到的参数
   runtimeConfig: {
@@ -15,6 +15,12 @@ export default defineNuxtConfig({
     }
   },
   css: [
-  ]
+    '/node_modules/@jun1999/file-view/dist/style.css',
+    'quill/dist/quill.snow.css',
+    'quill/dist/quill.bubble.css',
+    'quill/dist/quill.core.css'
+  ],
+  plugins: [
 
+  ]
 })

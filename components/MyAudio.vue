@@ -17,7 +17,7 @@ onMounted(() => {
   //在示例中我们使用了一个音频文件，但其实这里也可以用麦克风输入
   const audioEle = new Audio();
   audioEle.src = "/audio/demo_music.mp3"; //这里是文件名
-  audioEle.autoplay = true;
+  // audioEle.autoplay = true;
   audioEle.controls = true;
   audioEle.preload = "auto";
   document.getElementById('main')?.appendChild(audioEle)
